@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Registrant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class RegistrationController extends Controller
 {
@@ -39,29 +40,28 @@ class RegistrationController extends Controller
             'tgl_lahir' => ['required', 'date'],
             'jk' => ['required', 'in:Laki-laki,Perempuan'],
             'asal_swimschool' => ['required', 'string', 'max:255'],
-            'kategori_lomba' => ['required', 'in:' . implode(',', self::RACE_CATEGORIES)],
+            'kategori_lomba' => ['required', 'array', 'min:1'],
+            'kategori_lomba.*' => ['required', 'in:' . implode(',', self::RACE_CATEGORIES)],
+            'foto' => ['nullable', 'image', 'max:2048'],
         ]);
 
-        $fotoPath = null;
+        $validated['kategori_lomba'] = implode(', ', $validated['kategori_lomba']);
 
-if ($request->hasFile('foto')) {
+        if ($request->hasFile('foto')) {
+            $file = $request->file('foto');
+            $filename = now()->format('YmdHis') . '_' . Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)) . '.' . $file->getClientOriginalExtension();
 
-    $file = $request->file('foto');
+            $file->move(public_path('uploads'), $filename);
 
-    $filename = time() . '_' . $file->getClientOriginalName();
-
-    $file->move(public_path('uploads'), $filename);
-
-    $fotoPath = 'uploads/' . $filename;
-}
-
-$validated['foto'] = $fotoPath;
+            $validated['foto'] = 'uploads/' . $filename;
+        }
 
         Registrant::create($validated);
 
         return redirect()
             ->route('registrations.index')
-            ->with('success', 'Data pendaftaran berhasil disimpan.');
+            ->with('success', 'Selamat, pendaftaran berhasil!')
+            ->with('show_success_popup', true);
     }
 
     public function index()

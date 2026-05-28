@@ -8,22 +8,22 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('assets/css/site.css') }}">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body>
-    <header class="site-header">
-        <div class="container nav-wrapper">
-            <button class="menu-toggle" type="button" aria-controls="site-menu" aria-expanded="false" aria-label="Buka menu">
+<body class="min-h-screen bg-slate-950 font-sans text-slate-900 antialiased">
+    <header class="fa-header">
+        <div class="fa-nav-wrap">
+            <button class="fa-menu-button" type="button" aria-controls="site-menu" aria-expanded="false" aria-label="Buka menu">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
-            <nav id="site-menu" class="site-nav">
-                <ul class="nav-links">
-                    <li><a href="{{ route('home') }}">Home</a></li>
-                    <li><a href="{{ route('about') }}">About</a></li>
-                    <li><a href="{{ route('registrations.rules') }}">Pendaftaran</a></li>
-                    <li><a href="{{ route('contact') }}">Contact</a></li>
+            <nav id="site-menu" class="fa-nav">
+                <ul class="fa-nav-list">
+                    <li><a class="fa-nav-link" href="{{ route('home') }}">Home</a></li>
+                    <li><a class="fa-nav-link" href="{{ route('about') }}">About</a></li>
+                    <li><a class="fa-nav-link" href="{{ route('registrations.rules') }}">Pendaftaran</a></li>
+                    <li><a class="fa-nav-link" href="{{ route('contact') }}">Contact</a></li>
                 </ul>
             </nav>
         </div>
@@ -31,16 +31,17 @@
 
     @yield('content')
 
-    <footer>
+    <footer class="bg-slate-950 px-6 py-7 text-center text-sm font-semibold text-white">
         <p>&copy; {{ date('Y') }} Fun Aquatic</p>
     </footer>
 
     <script>
-        const menuToggle = document.querySelector('.menu-toggle');
-        const siteNav = document.querySelector('.site-nav');
+        const menuToggle = document.querySelector('.fa-menu-button');
+        const siteNav = document.querySelector('.fa-nav');
 
         menuToggle?.addEventListener('click', () => {
-            const isOpen = siteNav.classList.toggle('is-open');
+            const isOpen = !siteNav.classList.contains('is-open');
+            siteNav.classList.toggle('is-open', isOpen);
             menuToggle.classList.toggle('is-open', isOpen);
             menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
             menuToggle.setAttribute('aria-label', isOpen ? 'Tutup menu' : 'Buka menu');

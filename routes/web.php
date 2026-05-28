@@ -21,9 +21,7 @@ Route::get('/admin/login', [AuthController::class, 'showLogin'])->name('admin.lo
 Route::post('/admin/login', [AuthController::class, 'login'])->name('admin.login.submit');
 Route::post('/admin/logout', [AuthController::class, 'logout'])->name('admin.logout');
 Route::redirect('/login', '/admin/login')->name('login');
-Route::get('/admin/peserta/live-data', [AdminRegistrantController::class, 'liveData'])->middleware('signed')->name('admin.registrants.live-data');
 
 Route::middleware('auth')->group(function () {
     Route::get('/admin/peserta/export', [AdminRegistrantController::class, 'export'])->name('admin.registrants.export');
-    Route::get('/admin/peserta/live-query', [AdminRegistrantController::class, 'liveQuery'])->name('admin.registrants.live-query');
 });

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('jk', 20);
             $table->string('asal_swimschool');
             $table->string('kategori_lomba');
+            $table->string('foto')->nullable();
             $table->timestamps();
         });
     }

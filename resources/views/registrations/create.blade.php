@@ -3,30 +3,33 @@
 @section('title', 'Formulir Pendaftaran - Fun Aquatic')
 
 @section('content')
-<main class="page-band">
-    <div class="container narrow">
-        <div class="section-heading">
-            <h1>Formulir Pendaftaran</h1>
-            <p>Silakan isi data diri anak untuk mengikuti kompetisi renang 2026.</p>
+<main class="registration-page">
+    <div class="registration-container form-width">
+        <div class="registration-heading">
+            <p class="registration-kicker">Fun Aquatic 2026</p>
+            <h1 class="registration-title">Formulir Pendaftaran</h1>
+            <p class="registration-copy">Isi data peserta dengan teliti. Setelah berhasil, nama peserta akan langsung masuk ke daftar pendaftaran.</p>
         </div>
 
-        <form class="form-card" action="{{ route('registrations.store') }}" method="POST">
+        <form class="registration-card registration-form" action="{{ route('registrations.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             @if ($errors->any())
-                <div class="alert alert-error">
+                <div class="error-alert">
                     Data belum lengkap atau belum sesuai. Silakan cek kembali formulir.
                 </div>
             @endif
 
-            <label>Nama Anak Lengkap
-                <input type="text" name="nama_lengkap" value="{{ old('nama_lengkap') }}" required>
+            <p class="form-section-title">Data Peserta</p>
+
+            <label class="form-field">Nama Anak Lengkap
+                <input class="form-control" type="text" name="nama_lengkap" value="{{ old('nama_lengkap') }}" autocomplete="name" required>
                 @error('nama_lengkap') <small>{{ $message }}</small> @enderror
             </label>
 
-            <div class="form-row">
-                <label>Kelompok Usia
-                    <select name="ku" required>
+            <div class="form-grid">
+                <label class="form-field">Kelompok Usia
+                    <select class="form-control" name="ku" required>
                         <option value="">-- Pilih KU --</option>
                         @foreach ($ageGroups as $ageGroup)
                             <option value="{{ $ageGroup }}" @selected(old('ku') === $ageGroup)>KU {{ $ageGroup }} Tahun</option>
@@ -35,39 +38,59 @@
                     @error('ku') <small>{{ $message }}</small> @enderror
                 </label>
 
-                <label>Tanggal Lahir
-                    <input type="date" name="tgl_lahir" value="{{ old('tgl_lahir') }}" required>
+                <label class="form-field">Tanggal Lahir
+                    <input class="form-control" type="date" name="tgl_lahir" value="{{ old('tgl_lahir') }}" required>
                     @error('tgl_lahir') <small>{{ $message }}</small> @enderror
                 </label>
             </div>
 
-            <fieldset>
+            <fieldset class="form-field">
                 <legend>Jenis Kelamin</legend>
-                <label class="radio"><input type="radio" name="jk" value="Laki-laki" @checked(old('jk') === 'Laki-laki') required> Laki-laki</label>
-                <label class="radio"><input type="radio" name="jk" value="Perempuan" @checked(old('jk') === 'Perempuan') required> Perempuan</label>
+                <div class="choice-grid">
+                    <label class="choice-card">
+                        <input type="radio" name="jk" value="Laki-laki" @checked(old('jk') === 'Laki-laki') required>
+                        Laki-laki
+                    </label>
+                    <label class="choice-card">
+                        <input type="radio" name="jk" value="Perempuan" @checked(old('jk') === 'Perempuan') required>
+                        Perempuan
+                    </label>
+                </div>
                 @error('jk') <small>{{ $message }}</small> @enderror
             </fieldset>
 
-            <label>Asal Swimschool
-                <input type="text" name="asal_swimschool" value="{{ old('asal_swimschool') }}" placeholder="Tulis asal swimschool" required>
+            <label class="form-field">Asal Swimschool
+                <input class="form-control" type="text" name="asal_swimschool" value="{{ old('asal_swimschool') }}" placeholder="Contoh: Fun Aquatic Swimschool" required>
                 @error('asal_swimschool') <small>{{ $message }}</small> @enderror
             </label>
 
-            <label>Nomor Lomba yang Diikuti
-                <select name="kategori_lomba" required>
-                    <option value="">-- Pilih Nomor Lomba --</option>
+            <p class="form-section-title">Kategori Lomba</p>
+
+            <fieldset class="form-field">
+                <legend>Nomor Lomba yang Diikuti</legend>
+                <div class="race-choice-grid">
                     @foreach ($raceCategories as $raceCategory)
-                        <option value="{{ $raceCategory }}" @selected(old('kategori_lomba') === $raceCategory)>{{ $raceCategory }}</option>
+                        <label class="choice-card">
+                            <input type="checkbox" name="kategori_lomba[]" value="{{ $raceCategory }}" @checked(in_array($raceCategory, old('kategori_lomba', []), true))>
+                            {{ $raceCategory }}
+                        </label>
                     @endforeach
-                </select>
+                </div>
                 @error('kategori_lomba') <small>{{ $message }}</small> @enderror
+                @error('kategori_lomba.*') <small>{{ $message }}</small> @enderror
+            </fieldset>
+
+            <label class="form-field">Upload Foto Akte
+                <input class="form-control file-control" type="file" name="foto" accept="image/*">
+                <span class="text-sm font-semibold text-slate-500">Opsional. Upload foto akte yang jelas, maksimal 2MB.</span>
+                @error('foto') <small>{{ $message }}</small> @enderror
             </label>
 
-            <button class="button button-primary full" type="submit">Daftar Sekarang</button>
+            <button class="primary-button w-full" type="submit">Daftar Sekarang</button>
 
-            <div class="admin-link">
-                <span>Khusus Admin:</span>
-                <a href="{{ route('admin.login') }}">Login Admin & Cek Data</a>
+            <div class="border-t border-slate-200 pt-5 text-center text-sm text-slate-500">
+                <span class="font-semibold">Khusus Admin:</span>
+                <a class="font-extrabold text-cyan-800 hover:text-cyan-900" href="{{ route('admin.login') }}">Login Admin & Cek Data</a>
             </div>
         </form>
     </div>

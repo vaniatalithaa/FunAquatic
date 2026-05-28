@@ -3,26 +3,37 @@
 @section('title', 'Contact - Fun Aquatic')
 
 @section('content')
-<main class="page-band contact-wish-page">
-    <div class="container narrow">
-        <div class="wish-heading">
-            <h1>Contact</h1>
-            <p>Berikan pertanyaan untuk Fun Aquatic Competition.</p>
+<main class="clean-page">
+    <div class="clean-container">
+        <div class="clean-heading">
+            <p class="clean-kicker">Contact</p>
+            <h1 class="clean-title">Butuh bantuan sebelum daftar?</h1>
+            <p class="clean-copy">Kirim pertanyaan seputar jadwal, kategori lomba, ketentuan peserta, atau teknis pendaftaran.</p>
         </div>
 
-        <section class="wish-board">
-            <h2><span id="wishCount">0</span> Pesan</h2>
+        <div class="contact-layout">
+            <aside class="clean-card contact-panel">
+                <p class="clean-kicker">Informasi Cepat</p>
+                <div class="contact-list-clean">
+                    <p>Tim Fun Aquatic akan membantu memastikan data pendaftaran peserta sudah sesuai.</p>
+                    <p>Untuk pertanyaan mendesak, hubungi panitia melalui kanal resmi yang tersedia dari sekolah renang.</p>
+                </div>
+            </aside>
 
-            <form class="wish-form" id="wishForm">
-                <input type="text" id="wishName" name="name" placeholder="Nama" required>
-                <textarea id="wishMessage" name="message" rows="4" placeholder="Pesan" required></textarea>
-                <button class="button wish-submit" type="submit">Kirim</button>
-            </form>
+            <section class="clean-card wish-board-clean">
+                <h2 class="text-2xl font-black text-white"><span id="wishCount">0</span> Pesan</h2>
 
-            <div class="wish-list" id="wishList" aria-live="polite"></div>
+                <form class="wish-form" id="wishForm">
+                    <input type="text" id="wishName" name="name" placeholder="Nama" required>
+                    <textarea id="wishMessage" name="message" rows="4" placeholder="Tulis pertanyaan Anda" required></textarea>
+                    <button class="primary-button justify-self-start" type="submit">Kirim Pesan</button>
+                </form>
 
-            <div class="wish-pagination" id="wishPagination"></div>
-        </section>
+                <div class="wish-list" id="wishList" aria-live="polite"></div>
+
+                <div class="wish-pagination" id="wishPagination"></div>
+            </section>
+        </div>
     </div>
 </main>
 @endsection
@@ -36,7 +47,7 @@
     const wishCount = document.getElementById('wishCount');
     const wishPagination = document.getElementById('wishPagination');
     const storageKey = 'funAquaticContactWishes';
-    const pageSize = 2;
+    const pageSize = 3;
     let currentPage = 1;
 
     const defaultWishes = [
@@ -44,11 +55,6 @@
             name: 'Admin Fun Aquatic',
             message: 'Halo, silakan tinggalkan pertanyaan mengenai pendaftaran, jadwal, atau informasi kompetisi.',
             createdAt: Date.now() - 1000 * 60 * 60 * 24,
-        },
-        {
-            name: 'Arif',
-            message: 'Semoga acaranya lancar dan seru.',
-            createdAt: Date.now() - 1000 * 60 * 60 * 6,
         },
     ];
 
@@ -115,7 +121,7 @@
         `).join('');
 
         wishPagination.innerHTML = `
-            <button type="button" ${currentPage === 1 ? 'disabled' : ''} data-page="${currentPage - 1}">Previous</button>
+            <button type="button" ${currentPage === 1 ? 'disabled' : ''} data-page="${currentPage - 1}">Prev</button>
             ${Array.from({ length: totalPages }, (_, index) => {
                 const page = index + 1;
                 return `<button type="button" class="${page === currentPage ? 'active' : ''}" data-page="${page}">${page}</button>`;

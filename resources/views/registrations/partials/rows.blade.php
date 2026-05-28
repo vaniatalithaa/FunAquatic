@@ -7,24 +7,18 @@
         <td>{{ $registrant->jk }}</td>
         <td>{{ Str::upper($registrant->asal_swimschool) }}</td>
         <td>{{ $registrant->kategori_lomba }}</td>
-        <td>
-    @auth
-<td>
-    @if($registrant->foto)
-         <img src="{{ asset($registrant->foto) }}"
-             width="120"
-             style="
-                border-radius:12px;
-                object-fit:cover;
-                border:2px solid #e5e7eb;
-             ">
-    @endif
-</td>
-@endauth
-</td>
+        @auth
+            <td>
+                @if($registrant->foto)
+                    <img class="mx-auto h-20 w-24 rounded-lg border border-slate-200 object-cover" src="{{ asset($registrant->foto) }}" alt="Foto {{ $registrant->nama_lengkap }}">
+                @else
+                    <span class="text-sm font-semibold text-slate-400">-</span>
+                @endif
+            </td>
+        @endauth
     </tr>
 @empty
     <tr>
-        <td colspan="7" class="empty-row">Belum ada data pendaftar masuk.</td>
+        <td colspan="@auth 8 @else 7 @endauth" class="px-6 py-12 text-center text-slate-500">Belum ada data pendaftar masuk.</td>
     </tr>
 @endforelse

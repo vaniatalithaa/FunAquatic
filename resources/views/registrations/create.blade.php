@@ -6,7 +6,7 @@
 <main class="registration-page">
     <div class="registration-container form-width">
         <div class="registration-heading">
-            <p class="registration-kicker">Fun Aquatic 2026</p>
+            <p class="registration-kicker">Fun Aquatic Competition Series II</p>
             <h1 class="registration-title">Formulir Pendaftaran</h1>
             <p class="registration-copy">Isi data peserta dengan teliti. Setelah berhasil, nama peserta akan langsung masuk ke daftar pendaftaran.</p>
         </div>
@@ -67,18 +67,65 @@
             <p class="form-section-title">Kategori Lomba</p>
 
             <fieldset class="form-field">
-                <legend>Nomor Lomba yang Diikuti</legend>
-                <div class="race-choice-grid">
-                    @foreach ($raceCategories as $raceCategory)
-                        <label class="choice-card">
-                            <input type="checkbox" name="kategori_lomba[]" value="{{ $raceCategory }}" @checked(in_array($raceCategory, old('kategori_lomba', []), true))>
-                            {{ $raceCategory }}
-                        </label>
-                    @endforeach
-                </div>
-                @error('kategori_lomba') <small>{{ $message }}</small> @enderror
-                @error('kategori_lomba.*') <small>{{ $message }}</small> @enderror
-            </fieldset>
+
+    <legend style="
+        font-size:16px;
+        font-weight:600;
+        margin-bottom:18px;
+        color:#0f172a;
+    ">
+        Nomor Lomba yang Diikuti
+    </legend>
+
+    <div style="
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:16px;
+    ">
+
+        @foreach ($raceCategories as $raceCategory)
+
+            <label style="
+                display:flex;
+                align-items:center;
+                gap:14px;
+                padding:20px;
+                border:1.5px solid #dbe2ea;
+                border-radius:14px;
+                background:white;
+                cursor:pointer;
+                font-size:16px;
+                font-weight:600;
+                color:#1e293b;
+                transition:0.2s;
+            ">
+
+                <input
+                    type="checkbox"
+                    name="kategori_lomba[]"
+                    value="{{ $raceCategory }}"
+                    @checked(in_array($raceCategory, old('kategori_lomba', []), true))
+
+                    style="
+                        width:20px;
+                        height:20px;
+                        cursor:pointer;
+                    "
+                >
+
+                {{ $raceCategory }}
+
+            </label>
+
+        @endforeach
+
+    </div>
+
+    @error('kategori_lomba')
+        <small>{{ $message }}</small>
+    @enderror
+
+</fieldset>
 
             <label class="form-field">Upload Foto Akte
                 <input class="form-control file-control" type="file" name="foto" accept="image/*">

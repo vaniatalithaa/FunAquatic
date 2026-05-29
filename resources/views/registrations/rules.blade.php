@@ -24,6 +24,10 @@
                     <input type="checkbox" id="syaratCheck">
                     <span>Saya telah membaca seluruh ketentuan perlombaan dan menyatakan peserta memenuhi seluruh syarat yang berlaku untuk mengikuti Fun Aquatic Competition Series II.</span>
                 </label>
+                <label class="agreement-box">
+                    <input type="checkbox" id="syaratCheck">
+                    <span>Saya menyatakan bahwa seluruh data yang diisi sudah benar dan menjadi tanggung jawab pribadi peserta.</span>
+                </label>
 
                 <a href="{{ route('registrations.create') }}" id="btnDaftar" class="primary-button pointer-events-none mt-4 w-full opacity-45">Lanjut ke Formulir Pendaftaran</a>
             </aside>

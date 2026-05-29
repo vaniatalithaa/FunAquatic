@@ -11,13 +11,14 @@ class RegistrationController extends Controller
     public const AGE_GROUPS = ['3-4', '5-6', '7-8', '9-10', '11-12', '13-14'];
 
     public const RACE_CATEGORIES = [
-        '15m Kaki Gaya Bebas',
-        '30m Kaki Gaya Bebas',
-        '15m Gaya Bebas',
-        '15m Gaya Dada',
-        '30m Gaya Bebas',
-        '30m Gaya Dada',
-    ];
+    'Watersafety',
+    '15m Kaki Gaya Bebas',
+    '30m Kaki Gaya Bebas',
+    '15m Gaya Bebas',
+    '30m Gaya Bebas',
+    '15m Gaya Dada',
+    '30m Gaya Dada',
+];
 
     public function rules()
     {

@@ -20,6 +20,7 @@
                 </div>
             @endif
 
+            <section class="form-step is-active" data-form-step="1">
             <p class="form-section-title">Data Peserta</p>
 
             <label class="form-field">Nama Anak Lengkap
@@ -133,7 +134,72 @@
                 @error('foto') <small>{{ $message }}</small> @enderror
             </label>
 
-            <button class="primary-button w-full" type="submit">Daftar Sekarang</button>
+            <button class="primary-button w-full" type="button" id="nextPaymentStep">Pendaftaran Sekarang</button>
+            </section>
+
+            <section class="form-step" data-form-step="2" aria-hidden="true">
+                <p class="form-section-title">Pembayaran FAC Series II</p>
+
+                <div class="payment-info-card">
+                    <h2>Harga Perlombaan <strong>Early Bird</strong> <span>(Berlaku 28 Mei-11 Juni)</span></h2>
+                    <p>1 Nomor Perlombaan (Rp 175.000)</p>
+                    <p>2 Nomor Perlombaan (Rp 300.000)</p>
+                    <p>3 Nomor Perlombaan (Rp 375.000)</p>
+                </div>
+
+                <div class="payment-info-card">
+                    <h2>Harga Perlombaan <strong>Normal</strong> <span>(Berlaku 12 Juni-12 Juli)</span></h2>
+                    <p>1 Nomor Perlombaan (Rp 205.000)</p>
+                    <p>2 Nomor Perlombaan (Rp 330.000)</p>
+                    <p>3 Nomor Perlombaan (Rp 405.000)</p>
+                </div>
+
+                <div class="payment-info-card payment-bank-card">
+                    <h2>Silakan melakukan pembayaran sesuai kategori yang dipilih ke rekening berikut:</h2>
+                    <dl>
+                        <div>
+                            <dt>Bank</dt>
+                            <dd>: BCA</dd>
+                        </div>
+                        <div>
+                            <dt>No. Rekening</dt>
+                            <dd>: 8620596940</dd>
+                        </div>
+                        <div>
+                            <dt>Atas Nama</dt>
+                            <dd>: Hananda Widadputri Asri</dd>
+                        </div>
+                    </dl>
+
+                    <p>Setelah melakukan pembayaran, mohon upload bukti pembayaran pada kolom di bawah ini.</p>
+                    <p>Format catatan pembayaran: (Nama peserta/ nama swim school atau nama pelatih/ jumlah peserta)</p>
+                    <p>Contoh: (Budi dermawan/ coach Adi/ 3 peserta)</p>
+                    <p><strong>Catatan:</strong> Mohon pastikan nominal transfer, data peserta, dan bukti pembayaran yang diunggah sudah sesuai untuk mempercepat proses verifikasi.</p>
+                </div>
+
+                <label class="form-field">Upload Bukti Pembayaran
+                    <input class="form-control file-control" type="file" name="bukti_pembayaran" accept="image/*" required>
+                    <span class="text-sm font-semibold text-slate-500">Wajib. Upload bukti transfer yang jelas, maksimal 2MB.</span>
+                    @error('bukti_pembayaran') <small>{{ $message }}</small> @enderror
+                </label>
+
+                <label class="agreement-box">
+                    <input type="checkbox" name="konfirmasi_kuota" value="1" @checked(old('konfirmasi_kuota')) required>
+                    <span>Saya memahami bahwa kuota peserta hanya dapat diamankan setelah pembayaran dilakukan.</span>
+                </label>
+                @error('konfirmasi_kuota') <small>{{ $message }}</small> @enderror
+
+                <label class="agreement-box">
+                    <input type="checkbox" name="persetujuan_biaya" value="1" @checked(old('persetujuan_biaya')) required>
+                    <span>Dengan menyetujui formulir ini saya memahami dan menyetujui bahwa biaya pendaftaran yang telah dibayarkan tidak dapat dikembalikan apabila data yang dikirim sudah masuk proses verifikasi.</span>
+                </label>
+                @error('persetujuan_biaya') <small>{{ $message }}</small> @enderror
+
+                <div class="form-actions">
+                    <button class="secondary-button" type="button" id="backParticipantStep">Kembali</button>
+                    <button class="primary-button" type="submit">Daftar Sekarang</button>
+                </div>
+            </section>
 
             <div class="border-t border-slate-200 pt-5 text-center text-sm text-slate-500">
                 <span class="font-semibold">Khusus Admin:</span>
@@ -143,3 +209,42 @@
     </div>
 </main>
 @endsection
+
+@push('scripts')
+<script>
+    const participantStep = document.querySelector('[data-form-step="1"]');
+    const paymentStep = document.querySelector('[data-form-step="2"]');
+    const nextPaymentStep = document.getElementById('nextPaymentStep');
+    const backParticipantStep = document.getElementById('backParticipantStep');
+    const registrationForm = document.querySelector('.registration-form');
+
+    function setStep(step) {
+        const isPaymentStep = step === 2;
+
+        participantStep?.classList.toggle('is-active', !isPaymentStep);
+        paymentStep?.classList.toggle('is-active', isPaymentStep);
+        participantStep?.setAttribute('aria-hidden', isPaymentStep ? 'true' : 'false');
+        paymentStep?.setAttribute('aria-hidden', isPaymentStep ? 'false' : 'true');
+
+        registrationForm?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    nextPaymentStep?.addEventListener('click', () => {
+        const firstStepFields = participantStep?.querySelectorAll('input, select, textarea') ?? [];
+        const invalidField = Array.from(firstStepFields).find((field) => !field.checkValidity());
+
+        if (invalidField) {
+            invalidField.reportValidity();
+            return;
+        }
+
+        setStep(2);
+    });
+
+    backParticipantStep?.addEventListener('click', () => setStep(1));
+
+    @if ($errors->has('bukti_pembayaran') || $errors->has('konfirmasi_kuota') || $errors->has('persetujuan_biaya'))
+        setStep(2);
+    @endif
+</script>
+@endpush

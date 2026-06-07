@@ -21,7 +21,7 @@
 
                 @auth
                     <div class="flex flex-col gap-3 sm:flex-row sm:justify-end">
-                        <a class="primary-button" href="{{ route('admin.registrants.export') }}">Download Excel + Foto</a>
+                        <a class="primary-button" href="{{ route('admin.registrants.export') }}">Download Excel + Bukti</a>
                     </div>
                 @endauth
             </div>
@@ -38,7 +38,8 @@
                             <th>Asal Swimschool</th>
                             <th>Nomor Lomba</th>
                             @auth
-                                <th>Foto</th>
+                                <th>Foto Akte</th>
+                                <th>Bukti Pembayaran</th>
                             @endauth
                         </tr>
                     </thead>

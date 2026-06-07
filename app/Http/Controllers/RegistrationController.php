@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Registrant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
 class RegistrationController extends Controller
@@ -44,17 +45,32 @@ class RegistrationController extends Controller
             'kategori_lomba' => ['required', 'array', 'min:1'],
             'kategori_lomba.*' => ['required', 'in:' . implode(',', self::RACE_CATEGORIES)],
             'foto' => ['nullable', 'image', 'max:2048'],
+            'bukti_pembayaran' => ['required', 'image', 'max:2048'],
+            'konfirmasi_kuota' => ['accepted'],
+            'persetujuan_biaya' => ['accepted'],
         ]);
 
         $validated['kategori_lomba'] = implode(', ', $validated['kategori_lomba']);
+        unset($validated['konfirmasi_kuota'], $validated['persetujuan_biaya']);
 
         if ($request->hasFile('foto')) {
             $file = $request->file('foto');
             $filename = now()->format('YmdHis') . '_' . Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)) . '.' . $file->getClientOriginalExtension();
 
+            File::ensureDirectoryExists(public_path('uploads'));
             $file->move(public_path('uploads'), $filename);
 
             $validated['foto'] = 'uploads/' . $filename;
+        }
+
+        if ($request->hasFile('bukti_pembayaran')) {
+            $file = $request->file('bukti_pembayaran');
+            $filename = now()->format('YmdHis') . '_bukti_' . Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)) . '.' . $file->getClientOriginalExtension();
+
+            File::ensureDirectoryExists(public_path('uploads/pembayaran'));
+            $file->move(public_path('uploads/pembayaran'), $filename);
+
+            $validated['bukti_pembayaran'] = 'uploads/pembayaran/' . $filename;
         }
 
         Registrant::create($validated);

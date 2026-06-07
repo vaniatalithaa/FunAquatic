@@ -14,6 +14,7 @@ class Registrant extends Model
         'asal_swimschool',
         'kategori_lomba',
         'foto',
+        'bukti_pembayaran',
     ];
 
     protected function casts(): array

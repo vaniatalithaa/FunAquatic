@@ -24,7 +24,7 @@ class RegistrantController extends Controller
         echo '<html><head><meta charset="UTF-8"></head><body>';
         echo '<table border="1" style="border-collapse:collapse;">';
         echo '<tr>';
-        echo '<th>No</th><th>Nama Lengkap</th><th>KU</th><th>Tanggal Lahir</th><th>Jenis Kelamin</th><th>Asal Swimschool</th><th>Nomor Lomba</th><th>Foto Akte</th>';
+        echo '<th>No</th><th>Nama Lengkap</th><th>KU</th><th>Tanggal Lahir</th><th>Jenis Kelamin</th><th>Asal Swimschool</th><th>Nomor Lomba</th><th>Foto Akte</th><th>Bukti Pembayaran</th>';
         echo '</tr>';
 
         foreach ($registrants as $index => $registrant) {
@@ -37,6 +37,7 @@ class RegistrantController extends Controller
             echo '<td>' . e($registrant->asal_swimschool) . '</td>';
             echo '<td>' . e($registrant->kategori_lomba) . '</td>';
             echo '<td style="min-width:140px;height:110px;text-align:center;">' . $this->renderImage($registrant->foto) . '</td>';
+            echo '<td style="min-width:140px;height:110px;text-align:center;">' . $this->renderImage($registrant->bukti_pembayaran) . '</td>';
             echo '</tr>';
         }
 

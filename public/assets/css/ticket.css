@@ -1,0 +1,415 @@
+
+/* KHUSUS TOMBOL TAMBAH PENDAFTARAN BARU */
+.table-card .table-toolbar > a.secondary-button {
+    background: linear-gradient(135deg, #F06292, #1976D2) !important;
+    color: #ffffff !important;
+    border: none !important;
+}
+
+/* KHUSUS TOMBOL LOGOUT ADMIN */
+.table-card > form.mt-6.text-right > button.danger-button {
+    background: linear-gradient(135deg, #F06292, #1976D2) !important;
+    color: #ffffff !important;
+    border: none !important;
+}
+
+
+/* FIX BACKGROUND ISI TABEL PESERTA SAJA */
+.table-scroll {
+    background-color: #ffffff !important;
+    background-image: none !important;
+}
+
+.table-scroll .participants-table {
+    background-color: #ffffff !important;
+    background-image: none !important;
+}
+
+.table-scroll .participants-table tbody,
+.table-scroll .participants-table tbody tr,
+.table-scroll .participants-table tbody td,
+.table-scroll .participants-table .empty-row {
+    background-color: #ffffff !important;
+    background-image: none !important;
+}
+
+
+/* =========================================
+   PERBAIKAN FINAL TAMPILAN TIKET
+   ========================================= */
+
+.registration-page .ticket-page {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    background: #fff !important;
+    color: #11164e !important;
+    box-shadow: none !important;
+}
+
+.registration-page .ticket-page svg {
+    display: block !important;
+    max-width: none !important;
+}
+
+.registration-page .ticket-cart-icon {
+    width: 82px !important;
+    height: 82px !important;
+    min-width: 82px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: #f3e9fc !important;
+    border-radius: 20px !important;
+    color: #ce39a5 !important;
+}
+
+.registration-page .ticket-cart-icon svg {
+    width: 46px !important;
+    height: 46px !important;
+}
+
+.registration-page .ticket-symbol {
+    width: 125px !important;
+    min-width: 125px !important;
+    height: 112px !important;
+    min-height: 112px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-right: 1px solid rgba(100, 116, 139, .25) !important;
+}
+
+.registration-page .ticket-symbol svg {
+    width: 66px !important;
+    height: 66px !important;
+}
+
+.registration-page .ticket-heading {
+    display: flex !important;
+    align-items: center !important;
+    gap: 22px !important;
+    margin: 10px 0 18px !important;
+}
+
+.registration-page .ticket-heading-text {
+    flex: 1 !important;
+}
+
+.registration-page .ticket-heading-text h2 {
+    font-size: 27px !important;
+    font-weight: 900 !important;
+    color: #10154f !important;
+    margin: 0 0 4px !important;
+}
+
+.registration-page .ticket-heading-text p {
+    font-size: 16px !important;
+    color: #18204f !important;
+    line-height: 1.5 !important;
+    margin: 0 !important;
+}
+
+.registration-page .ticket-card {
+    display: grid !important;
+    grid-template-columns: 125px minmax(0, 1fr) 275px !important;
+    align-items: center !important;
+    gap: 24px !important;
+    width: 100% !important;
+    min-height: 150px !important;
+    padding: 14px 24px !important;
+    margin: 16px 0 !important;
+    border-radius: 17px !important;
+}
+
+.registration-page .ticket-early {
+    background: linear-gradient(110deg, #fce8f7, #f9eafa) !important;
+    border: 1.5px solid #f3a6e8 !important;
+}
+
+.registration-page .ticket-normal {
+    background: linear-gradient(110deg, #e7f0ff, #e5edff) !important;
+    border: 1.5px solid #b5d0ff !important;
+}
+
+.registration-page .ticket-information {
+    min-width: 0 !important;
+}
+
+.registration-page .ticket-title-row {
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+    gap: 12px !important;
+    margin-bottom: 5px !important;
+}
+
+.registration-page .ticket-information h3 {
+    font-size: 25px !important;
+    font-weight: 900 !important;
+    color: #11164e !important;
+    margin: 0 !important;
+}
+
+.registration-page .ticket-label {
+    display: inline-block !important;
+    padding: 5px 13px !important;
+    border-radius: 30px !important;
+    font-size: 13px !important;
+    font-weight: 800 !important;
+}
+
+.registration-page .ticket-early .ticket-label {
+    background: #f8d0ee !important;
+    color: #c42c96 !important;
+}
+
+.registration-page .ticket-normal .ticket-label {
+    background: #c9ddff !important;
+    color: #0759d4 !important;
+}
+
+.registration-page .ticket-period {
+    font-size: 14px !important;
+    font-weight: 800 !important;
+    color: #111b50 !important;
+    margin: 4px 0 6px !important;
+}
+
+.registration-page .ticket-information ul {
+    list-style: disc !important;
+    padding-left: 20px !important;
+    margin: 0 !important;
+}
+
+.registration-page .ticket-information li {
+    display: list-item !important;
+    font-size: 15px !important;
+    line-height: 1.4 !important;
+    color: #17204f !important;
+}
+
+.registration-page .ticket-checkout {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.registration-page .ticket-checkout-button {
+    width: 100% !important;
+    min-height: 52px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 12px !important;
+    padding: 12px !important;
+    border: none !important;
+    border-radius: 12px !important;
+    color: #fff !important;
+    font-size: 15px !important;
+    font-weight: 900 !important;
+    text-decoration: none !important;
+    font-family: inherit !important;
+}
+
+.registration-page .ticket-early .ticket-checkout-button {
+    background: linear-gradient(100deg, #d83ba9, #c42b9c) !important;
+}
+
+.registration-page .ticket-normal .ticket-checkout-button {
+    background: linear-gradient(100deg, #1476ed, #0758d6) !important;
+}
+
+.registration-page .ticket-information-note {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 18px !important;
+    padding: 14px 22px !important;
+    margin-top: 16px !important;
+    border-radius: 16px !important;
+    background: linear-gradient(110deg, #eee9ff, #e9e8ff) !important;
+    color: #182052 !important;
+    font-size: 14px !important;
+    line-height: 1.55 !important;
+}
+
+.registration-page .note-icon {
+    width: 29px !important;
+    height: 29px !important;
+    flex-shrink: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 50% !important;
+    background: #5545ce !important;
+    color: #fff !important;
+}
+
+.registration-page .ticket-information-note ul {
+    padding-left: 28px !important;
+    margin: 3px 0 0 !important;
+}
+
+@media (max-width: 760px) {
+    .registration-page .ticket-card {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+        padding: 18px !important;
+    }
+
+    .registration-page .ticket-symbol {
+        display: none !important;
+    }
+
+    .registration-page .ticket-checkout-button {
+        width: 100% !important;
+    }
+}
+
+
+/* =========================================
+   PENYEMPURNAAN TAMPILAN TIKET
+   ========================================= */
+
+/* Judul pembayaran */
+.registration-page .ticket-section-title {
+    color: #075de0 !important;
+    font-size: 16px !important;
+    font-weight: 900 !important;
+    letter-spacing: 1px !important;
+    text-transform: uppercase;
+    padding-bottom: 10px !important;
+    border-bottom: 1px solid #e5eaf2 !important;
+}
+
+/* Area judul pembelian */
+.registration-page .ticket-heading {
+    gap: 22px !important;
+    margin: 10px 0 18px !important;
+}
+
+.registration-page .ticket-heading-text h2 {
+    font-size: 27px !important;
+    line-height: 1.25 !important;
+    margin-bottom: 3px !important;
+}
+
+.registration-page .ticket-heading-text p {
+    font-size: 16px !important;
+    line-height: 1.5 !important;
+}
+
+/* Kartu Early Bird dan Normal */
+.registration-page .ticket-card {
+    grid-template-columns: 125px minmax(0, 1fr) 275px !important;
+    min-height: 150px !important;
+    padding: 14px 24px !important;
+    gap: 24px !important;
+    border-radius: 17px !important;
+    margin-bottom: 16px !important;
+}
+
+/* Ikon tiket Early Bird */
+.registration-page .ticket-early .ticket-symbol {
+    color: #d83ba9 !important;
+    border-right: 1px solid rgba(216, 59, 169, .25) !important;
+}
+
+.registration-page .ticket-early .ticket-symbol svg {
+    width: 66px !important;
+    height: 66px !important;
+    stroke: #d83ba9 !important;
+}
+
+/* Ikon tiket Normal */
+.registration-page .ticket-normal .ticket-symbol {
+    color: #3185ee !important;
+    border-right: 1px solid rgba(49, 133, 238, .25) !important;
+}
+
+.registration-page .ticket-normal .ticket-symbol svg {
+    width: 66px !important;
+    height: 66px !important;
+    stroke: #3185ee !important;
+}
+
+/* Informasi harga */
+.registration-page .ticket-information h3 {
+    font-size: 25px !important;
+    margin-bottom: 3px !important;
+}
+
+.registration-page .ticket-period {
+    font-size: 14px !important;
+    margin: 4px 0 6px !important;
+}
+
+.registration-page .ticket-information li {
+    font-size: 15px !important;
+    line-height: 1.4 !important;
+}
+
+/* Tombol checkout */
+.registration-page .ticket-checkout-button {
+    min-height: 52px !important;
+    padding: 12px 18px !important;
+    border-radius: 12px !important;
+    font-size: 15px !important;
+    font-weight: 800 !important;
+    color: #fff !important;
+    text-decoration: none !important;
+    box-shadow: 0 4px 10px rgba(30, 64, 175, .10);
+    transition: all .2s ease !important;
+}
+
+.registration-page .ticket-early .ticket-checkout-button {
+    background: linear-gradient(100deg, #d83ba9, #c42b9c) !important;
+}
+
+.registration-page .ticket-normal .ticket-checkout-button {
+    background: linear-gradient(100deg, #1476ed, #0758d6) !important;
+}
+
+.registration-page .ticket-checkout-button:hover {
+    transform: translateY(-2px);
+    filter: brightness(.96);
+}
+
+/* Catatan pembayaran */
+.registration-page .ticket-information-note {
+    padding: 14px 22px !important;
+    margin-top: 16px !important;
+    border-radius: 16px !important;
+    background: linear-gradient(110deg, #eee9ff, #e9e8ff) !important;
+}
+
+.registration-page .ticket-information-note ul {
+    list-style: disc !important;
+    padding-left: 28px !important;
+}
+
+/* Bagian upload bukti tetap rapi */
+.registration-page .ticket-page + .form-field {
+    margin-top: 22px !important;
+}
+
+/* Tampilan HP */
+@media (max-width: 760px) {
+    .registration-page .ticket-card {
+        grid-template-columns: 1fr !important;
+        padding: 18px !important;
+        gap: 12px !important;
+    }
+
+    .registration-page .ticket-symbol {
+        display: none !important;
+    }
+
+    .registration-page .ticket-checkout-button {
+        width: 100% !important;
+    }
+
+    .registration-page .ticket-heading-text h2 {
+        font-size: 21px !important;
+    }
+}

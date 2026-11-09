@@ -28,21 +28,26 @@
 
             <div class="table-scroll">
                 <table class="participants-table">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Nama Lengkap</th>
-                            <th>KU</th>
-                            <th>Tgl Lahir</th>
-                            <th>L/P</th>
-                            <th>Asal Swimschool</th>
-                            <th>Nomor Lomba</th>
-                            @auth
-                                <th>Foto Akte</th>
-                                <th>Bukti Pembayaran</th>
-                            @endauth
-                        </tr>
-                    </thead>
+                    
+<thead>
+    <tr>
+        <th>No</th>
+        <th>Nama Lengkap</th>
+        <th>KU</th>
+        <th>Tgl Lahir</th>
+        <th>L/P</th>
+        <th>Asal Swimschool</th>
+        <th>Nomor Lomba</th>
+
+        @auth
+            <th>Email Orang Tua</th>
+            <th>No. WhatsApp Orang Tua</th>
+            <th>Foto Akte</th>
+            <th>Bukti Pembayaran</th>
+        @endauth
+    </tr>
+</thead>
+
                     <tbody id="data-peserta"></tbody>
                 </table>
             </div>
@@ -63,20 +68,40 @@
             <p class="success-modal-kicker">Pendaftaran Berhasil</p>
             <h2 id="successModalTitle">Selamat, peserta telah terdaftar!</h2>
             <p>Silakan screenshot tampilan daftar pendaftaran ini sebagai bukti pendaftaran.</p>
-            <button class="primary-button w-full" type="button" id="successModalClose">Mengerti</button>
-        </div>
+            
+<button
+    class="primary-button w-full"
+    type="button"
+    onclick="document.getElementById('successModal').remove();">
+    MENGERTI
+</button>
+
     </div>
 @endif
 @endsection
 
 @push('scripts')
+
 <script>
     async function loadData() {
-        const response = await fetch('{{ route('registrations.data') }}', {
-            headers: { 'X-Requested-With': 'XMLHttpRequest' }
-        });
+        try {
+            const response = await fetch(@json(route('registrations.data')), {
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            });
 
-        document.getElementById('data-peserta').innerHTML = await response.text();
+            if (!response.ok) {
+                throw new Error('Gagal mengambil data peserta');
+            }
+
+            const html = await response.text();
+
+            document.getElementById('data-peserta').innerHTML = html;
+
+        } catch (error) {
+            console.error('Kesalahan mengambil data:', error);
+        }
     }
 
     loadData();
@@ -86,4 +111,5 @@
         document.getElementById('successModal')?.remove();
     });
 </script>
+
 @endpush

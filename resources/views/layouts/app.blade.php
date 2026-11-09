@@ -9,6 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    @stack('styles')
 </head>
 <body class="min-h-screen bg-slate-950 font-sans text-slate-900 antialiased">
     <header class="fa-header">
@@ -32,8 +34,8 @@
     @yield('content')
 
     <footer class="bg-slate-950 px-6 py-7 text-center text-sm font-semibold text-white">
-        <p>&copy; {{ date('Y') }} Fun Aquatic</p>
-    </footer>
+    <p>&copy; 2027 Fun Aquatic Swim School</p>
+</footer>
 
     <script>
         const menuToggle = document.querySelector('.fa-menu-button');

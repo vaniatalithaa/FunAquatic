@@ -1,3 +1,4 @@
+
 @forelse ($registrants as $registrant)
     <tr>
         <td>{{ $loop->iteration }}</td>
@@ -7,13 +8,18 @@
         <td>{{ $registrant->jk }}</td>
         <td>{{ Str::upper($registrant->asal_swimschool) }}</td>
         <td>{{ $registrant->kategori_lomba }}</td>
+
         @auth
+            <td>{{ $registrant->email_orangtua ?? '-' }}</td>
+            <td>{{ $registrant->no_hp_orangtua ?? '-' }}</td>
+
             <td>
                 @include('registrations.partials.upload-preview', [
                     'path' => $registrant->foto,
                     'label' => 'Foto ' . $registrant->nama_lengkap,
                 ])
             </td>
+
             <td>
                 @include('registrations.partials.upload-preview', [
                     'path' => $registrant->bukti_pembayaran,
@@ -24,6 +30,9 @@
     </tr>
 @empty
     <tr>
-        <td colspan="@auth 9 @else 7 @endauth" class="px-6 py-12 text-center text-slate-500">Belum ada data pendaftar masuk.</td>
+        <td colspan="@auth 11 @else 7 @endauth"
+            class="px-6 py-12 text-center text-slate-500">
+            Belum ada data pendaftar masuk.
+        </td>
     </tr>
 @endforelse

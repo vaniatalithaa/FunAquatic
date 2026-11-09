@@ -122,7 +122,11 @@ iframe {
 .hero,
 .page-band,
 .login-page {
-    background: linear-gradient(135deg, #001f3f 0%, #4d0000 52%, #800000 100%);
+    background: linear-gradient(
+        135deg,
+        #F06292 0%,
+        #1976D2 100%
+    );
     min-height: 100vh;
 }
 
@@ -1271,3 +1275,4 @@ footer {
         padding: 118px 14px 44px;
     }
 }
+

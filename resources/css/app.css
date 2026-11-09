@@ -12,11 +12,11 @@
 
 @layer components {
     .clean-page {
-        min-height: 100vh;
-        color: #fff;
-        background: linear-gradient(135deg, #071b3a 0%, #2a1238 42%, #8c0000 100%);
-        padding: 118px 18px 64px;
-    }
+    min-height: 100vh;
+    color: #fff;
+    background: linear-gradient(135deg, #F06292 0%, #1976D2 100%);
+    padding: 118px 18px 64px;
+}
 
     .clean-container {
         width: min(100%, 1180px);
@@ -59,14 +59,20 @@
         box-shadow: 0 22px 60px rgb(0 0 0 / 24%);
     }
 
-    .home-hero {
-        min-height: 100vh;
-        display: grid;
-        align-items: center;
-        padding: 118px 18px 64px;
-        color: #0f172a;
-        background: linear-gradient(135deg, #071b3a 0%, #2a1238 42%, #8c0000 100%);
-    }
+   
+.home-hero {
+    min-height: 100vh;
+    display: grid;
+    align-items: center;
+    padding: 118px 18px 64px;
+    color: #0f172a;
+    background: linear-gradient(
+        135deg,
+        #F06292 0%,
+        #1976D2 100%
+    );
+}
+
 
     .home-grid {
         width: min(100%, 1180px);
@@ -291,12 +297,17 @@
         padding: 8px 12px;
     }
 
-    .wish-pagination button.active {
-        border-color: #b00014;
-        background: #b00014;
-        color: #fff;
-    }
+   .wish-pagination button.active {
+    border-color: #F06292;
+    background: linear-gradient(135deg, #F06292, #1976D2);
+    color: #fff;
+}
 
+.wish-pagination button:hover:not(.active) {
+    border-color: #F06292;
+    background: #FCE4EC;
+    color: #1976D2;
+}
     .wish-pagination button:disabled {
         cursor: not-allowed;
         opacity: .45;
@@ -316,14 +327,18 @@
         background: #fff;
     }
 
-    .about-page {
-        min-height: 100vh;
-        padding: 118px 18px 72px;
-        color: #fff;
-        background:
-            radial-gradient(circle at 16% 12%, rgb(7 27 58 / 78%) 0, transparent 34%),
-            linear-gradient(135deg, #071b3a 0%, #2a1238 42%, #8c0000 100%);
-    }
+   
+.about-page {
+    min-height: 100vh;
+    padding: 118px 18px 72px;
+    color: #fff;
+    background: linear-gradient(
+        135deg,
+        #F06292 0%,
+        #1976D2 100%
+    );
+}
+
 
     .about-container {
         width: min(100%, 1180px);
@@ -359,13 +374,13 @@
         box-shadow: 0 24px 70px rgb(0 0 0 / 24%);
     }
 
-    .about-panel-red {
-        background: linear-gradient(145deg, rgb(190 0 20 / 92%), rgb(125 0 12 / 88%));
-    }
+   .about-panel-red {
+    background: linear-gradient(145deg, #F06292, #d94b80);
+}
 
-    .about-panel-purple {
-        background: linear-gradient(145deg, rgb(43 23 73 / 94%), rgb(33 22 55 / 90%));
-    }
+.about-panel-purple {
+    background: linear-gradient(145deg, #1976D2, #1259a8);
+}
 
     .about-panel h2 {
         display: flex;
@@ -395,7 +410,7 @@
         margin-top: 34px;
         border: 1px solid rgb(255 255 255 / 18%);
         border-radius: 14px;
-        background: linear-gradient(90deg, rgb(9 39 82 / 78%), rgb(205 0 10 / 78%));
+        background: linear-gradient(135deg, #F06292, #1976D2);
         padding: 22px 30px;
         box-shadow: 0 22px 60px rgb(0 0 0 / 22%);
     }
@@ -509,7 +524,7 @@
         min-height: 100vh;
         padding: 118px 18px 64px;
         color: #fff;
-        background: linear-gradient(135deg, #071b3a 0%, #2a1238 42%, #8c0000 100%);
+        background: linear-gradient(135deg, #F06292 0%, #1976D2 100%);
     }
 
     .registration-container {
@@ -578,7 +593,7 @@
 
     .form-section-title {
         margin-bottom: -6px;
-        color: #b00014;
+        color: #1976D2;
         font-size: 13px;
         font-weight: 900;
         letter-spacing: .14em;
@@ -613,9 +628,9 @@
     }
 
     .form-control:focus {
-        border-color: #b00014;
-        box-shadow: 0 0 0 4px rgb(176 0 20 / 16%);
-    }
+    border-color: #1976D2;
+    box-shadow: 0 0 0 4px rgb(25 118 210 / 16%);
+}
 
     .choice-grid {
         display: grid;
@@ -740,13 +755,13 @@
     }
 
     .primary-button {
-        background: #b00014;
-        color: #fff;
-    }
+    background: linear-gradient(135deg, #F06292, #1976D2);
+    color: #fff;
+}
 
-    .primary-button:hover {
-        background: #8c0000;
-    }
+.primary-button:hover {
+    background: linear-gradient(135deg, #1976D2, #F06292);
+}
 
     .secondary-button {
         border: 1px solid #cbd5e1;
@@ -789,15 +804,15 @@
         list-style: none;
     }
 
-    .rules-list li::before {
-        content: '';
-        flex: 0 0 10px;
-        width: 10px;
-        height: 10px;
-        margin-top: 8px;
-        border-radius: 999px;
-        background: #b00014;
-    }
+   .rules-list li::before {
+    content: '';
+    flex: 0 0 10px;
+    width: 10px;
+    height: 10px;
+    margin-top: 8px;
+    border-radius: 999px;
+    background: #F06292;
+}
 
     .pdf-panel {
         overflow: hidden;
@@ -827,12 +842,12 @@
     }
 
     .agreement-box input {
-        flex: 0 0 auto;
-        width: 20px;
-        height: 20px;
-        margin-top: 3px;
-        accent-color: #b00014;
-    }
+    flex: 0 0 auto;
+    width: 20px;
+    height: 20px;
+    margin-top: 3px;
+    accent-color: #F06292;
+}
 
     .table-card {
         padding: clamp(18px, 3vw, 30px);
@@ -1146,4 +1161,47 @@
     .participants-table {
         min-width: 760px;
     }
+}
+
+
+/* Tombol Upload File - Tema Pink & Blue Pastel */
+input[type="file"]::file-selector-button {
+    background: linear-gradient(
+        135deg,
+        #F06292,
+        #1976D2
+    ) !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 10px !important;
+    padding: 12px 18px !important;
+    margin-right: 14px !important;
+    font-family: inherit;
+    font-weight: 800 !important;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+input[type="file"]::file-selector-button:hover {
+    background: linear-gradient(
+        135deg,
+        #1976D2,
+        #F06292
+    ) !important;
+}
+
+/* Dukungan browser berbasis WebKit */
+input[type="file"]::-webkit-file-upload-button {
+    background: linear-gradient(
+        135deg,
+        #F06292,
+        #1976D2
+    ) !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 10px !important;
+    padding: 12px 18px !important;
+    margin-right: 14px !important;
+    font-weight: 800 !important;
+    cursor: pointer;
 }

@@ -9,17 +9,24 @@ use Illuminate\Support\Str;
 
 class RegistrationController extends Controller
 {
-    public const AGE_GROUPS = ['3-4', '5-6', '7-8', '9-10', '11-12', '13-14'];
+    public const AGE_GROUPS = [
+        '3-4',
+        '5-6',
+        '7-8',
+        '9-10',
+        '11-12',
+        '13-14'
+    ];
 
     public const RACE_CATEGORIES = [
-    'Watersafety',
-    '15m Kaki Gaya Bebas',
-    '30m Kaki Gaya Bebas',
-    '15m Gaya Bebas',
-    '30m Gaya Bebas',
-    '15m Gaya Dada',
-    '30m Gaya Dada',
-];
+        'Watersafety',
+        '15m Kaki Gaya Bebas',
+        '30m Kaki Gaya Bebas',
+        '15m Gaya Bebas',
+        '30m Gaya Bebas',
+        '15m Gaya Dada',
+        '30m Gaya Dada',
+    ];
 
     public function rules()
     {
@@ -36,45 +43,92 @@ class RegistrationController extends Controller
 
     public function store(Request $request)
     {
+        // 1. Validasi data peserta
         $validated = $request->validate([
             'nama_lengkap' => ['required', 'string', 'max:255'],
             'ku' => ['required', 'in:' . implode(',', self::AGE_GROUPS)],
             'tgl_lahir' => ['required', 'date'],
             'jk' => ['required', 'in:Laki-laki,Perempuan'],
+            'email_orangtua' => ['required', 'email', 'max:255'],
+            'no_hp_orangtua' => ['required', 'string', 'max:20'],
             'asal_swimschool' => ['required', 'string', 'max:255'],
             'kategori_lomba' => ['required', 'array', 'min:1'],
-            'kategori_lomba.*' => ['required', 'in:' . implode(',', self::RACE_CATEGORIES)],
+            'kategori_lomba.*' => [
+                'required',
+                'in:' . implode(',', self::RACE_CATEGORIES)
+            ],
+
             'foto' => ['nullable', 'image', 'max:2048'],
-            'bukti_pembayaran' => ['required', 'image', 'max:2048'],
-            'konfirmasi_kuota' => ['accepted'],
-            'persetujuan_biaya' => ['accepted'],
+            'bukti_pembayaran' => ['nullable', 'image', 'max:2048'],
+
+            'konfirmasi_kuota' => ['sometimes', 'accepted'],
+            'persetujuan_biaya' => ['sometimes', 'accepted'],
         ]);
 
-        $validated['kategori_lomba'] = implode(', ', $validated['kategori_lomba']);
-        unset($validated['konfirmasi_kuota'], $validated['persetujuan_biaya']);
+        // 2. Menggabungkan kategori lomba
+        $validated['kategori_lomba'] = implode(
+            ', ',
+            $validated['kategori_lomba']
+        );
 
+        unset(
+            $validated['konfirmasi_kuota'],
+            $validated['persetujuan_biaya']
+        );
+
+        // 3. Menyimpan foto peserta
         if ($request->hasFile('foto')) {
             $file = $request->file('foto');
-            $filename = now()->format('YmdHis') . '_' . Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)) . '.' . $file->getClientOriginalExtension();
+
+            $filename = now()->format('YmdHis')
+                . '_' . Str::slug(
+                    pathinfo(
+                        $file->getClientOriginalName(),
+                        PATHINFO_FILENAME
+                    )
+                )
+                . '.' . $file->getClientOriginalExtension();
 
             File::ensureDirectoryExists(public_path('uploads'));
+
             $file->move(public_path('uploads'), $filename);
 
             $validated['foto'] = 'uploads/' . $filename;
         }
 
+        // 4. Menyimpan bukti pembayaran jika diunggah
         if ($request->hasFile('bukti_pembayaran')) {
             $file = $request->file('bukti_pembayaran');
-            $filename = now()->format('YmdHis') . '_bukti_' . Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)) . '.' . $file->getClientOriginalExtension();
 
-            File::ensureDirectoryExists(public_path('uploads/pembayaran'));
-            $file->move(public_path('uploads/pembayaran'), $filename);
+            $filename = now()->format('YmdHis')
+                . '_bukti_' . Str::slug(
+                    pathinfo(
+                        $file->getClientOriginalName(),
+                        PATHINFO_FILENAME
+                    )
+                )
+                . '.' . $file->getClientOriginalExtension();
 
-            $validated['bukti_pembayaran'] = 'uploads/pembayaran/' . $filename;
+            File::ensureDirectoryExists(
+                public_path('uploads/pembayaran')
+            );
+
+            $file->move(
+                public_path('uploads/pembayaran'),
+                $filename
+            );
+
+            $validated['bukti_pembayaran'] =
+                'uploads/pembayaran/' . $filename;
+        } else {
+            // Kolom database tetap dipertahankan.
+            $validated['bukti_pembayaran'] = '';
         }
 
+        // 5. Menyimpan data peserta ke database
         Registrant::create($validated);
 
+        // 6. Menampilkan halaman daftar peserta
         return redirect()
             ->route('registrations.index')
             ->with('success', 'Selamat, pendaftaran berhasil!')
@@ -90,6 +144,9 @@ class RegistrationController extends Controller
     {
         $registrants = Registrant::latest()->get();
 
-        return view('registrations.partials.rows', compact('registrants'));
+        return view(
+            'registrations.partials.rows',
+            compact('registrants')
+        );
     }
 }

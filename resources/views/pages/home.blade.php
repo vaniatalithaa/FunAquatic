@@ -8,7 +8,7 @@
         <div>
             <h1 class="home-title">Fun Aquatic <span>Series II</span></h1>
             <div class="home-meta">
-                <p class="home-date">Sabtu, 25 Juli 2026</p>
+                <p class="home-date">Minggu, 31 Januari 2027</p>
                 <p>by Fun Aquatic Swimschool X Pakuwon Golf & family club managed by westin hotels & resorts</p>
             </div>
             <div class="action-row-clean">

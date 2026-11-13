@@ -1,0 +1,449 @@
+
+/* HALAMAN PENDAFTARAN KOLEKTIF */
+
+.collective-page {
+    min-height: 100vh;
+    padding: 90px 6% 80px;
+    background: linear-gradient(120deg, #ec5798, #1976d2);
+}
+
+.collective-heading {
+    max-width: 850px;
+    margin: 0 auto 45px;
+    text-align: center;
+    color: white;
+}
+
+.collective-kicker {
+    color: #ffc1d8;
+    font-weight: 800;
+    letter-spacing: 3px;
+    font-size: 13px;
+}
+
+.collective-heading h1 {
+    font-size: clamp(32px, 5vw, 55px);
+    font-weight: 900;
+    margin: 12px 0;
+    color: white;
+}
+
+.collective-heading > p:last-child {
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+.collective-container {
+    max-width: 1150px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 0.85fr 1.3fr;
+    gap: 25px;
+    align-items: start;
+}
+
+.collective-info,
+.collective-form-card {
+    background: white;
+    border-radius: 20px;
+    padding: 35px;
+    box-shadow: 0 15px 40px rgba(20, 35, 70, 0.12);
+}
+
+.info-icon {
+    width: 75px;
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fce8f1;
+    border-radius: 20px;
+    font-size: 35px;
+    margin-bottom: 22px;
+}
+
+.collective-info h2,
+.collective-form-card h2 {
+    color: #193957;
+    font-size: 23px;
+    font-weight: 900;
+    margin-bottom: 12px;
+}
+
+.collective-info > p,
+.form-description {
+    color: #718096;
+    line-height: 1.8;
+    font-size: 14px;
+}
+
+.minimum-box {
+    margin: 25px 0;
+    padding: 22px;
+    border-radius: 15px;
+    background: linear-gradient(135deg, #fff0f6, #edf5ff);
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.minimum-box span {
+    color: #e75491;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.minimum-box strong {
+    color: #1976d2;
+    font-size: 32px;
+    font-weight: 900;
+}
+
+.minimum-box small {
+    color: #718096;
+}
+
+.collective-info ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.collective-info li {
+    position: relative;
+    padding-left: 25px;
+    margin: 17px 0;
+    color: #344b63;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.6;
+}
+
+.collective-info li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #ed5797;
+    font-weight: 900;
+}
+
+.collective-form-card {
+    padding: 38px;
+}
+
+.collective-field {
+    margin-top: 22px;
+}
+
+.collective-field label {
+    display: block;
+    margin-bottom: 9px;
+    color: #263e59;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.collective-field input {
+    width: 100%;
+    min-height: 50px;
+    padding: 13px 15px;
+    border: 1px solid #d5dfeb;
+    border-radius: 10px;
+    outline: none;
+    font-family: inherit;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.collective-field input:focus {
+    border-color: #1976d2;
+    box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
+}
+
+.collective-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.excel-section {
+    margin-top: 35px;
+}
+
+.excel-section h3 {
+    color: #193957;
+    font-size: 19px;
+    font-weight: 900;
+}
+
+.excel-section > p {
+    color: #718096;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.template-box {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 20px 0;
+    padding: 17px;
+    background: #f2f8ff;
+    border: 1px solid #dceaff;
+    border-radius: 13px;
+}
+
+.excel-icon {
+    background: #198754;
+    color: white;
+    font-weight: 900;
+    padding: 12px;
+    border-radius: 9px;
+}
+
+.template-box strong,
+.template-box small {
+    display: block;
+}
+
+.template-box strong {
+    color: #263e59;
+    font-size: 13px;
+}
+
+.template-box small {
+    color: #8291a3;
+    margin-top: 5px;
+    font-size: 11px;
+}
+
+.template-status {
+    margin-left: auto;
+    color: #1976d2;
+    font-size: 12px;
+    font-weight: 800;
+    text-decoration: none;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: 0.2s ease;
+}
+
+.template-status:hover {
+    color: #e75491;
+    text-decoration: underline;
+}
+
+.upload-area {
+    padding: 18px 15px;
+    text-align: center;
+    border: 2px dashed #b7cce5;
+    border-radius: 15px;
+    background: #f9fbff;
+}
+
+.upload-area .upload-icon {
+    margin: auto auto 8px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #e7f0ff;
+    color: #1976d2;
+    font-size: 30px;
+    font-weight: 800;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.upload-area strong {
+    color: #263e59;
+    display: block;
+    font-size: 14px;
+}
+
+.upload-area p {
+    color: #8291a3;
+    font-size: 11px;
+    margin: 5px 0;
+}
+
+.upload-area input {
+    display: none;
+}
+
+.upload-button {
+    display: inline-block;
+    margin-top: 7px;
+    padding: 9px 22px;
+    background: #1976d2;
+    color: white;
+    border-radius: 9px;
+    font-size: 12px;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.file-name {
+    margin-top: 8px;
+    color: #1976d2;
+    font-size: 12px;
+    overflow-wrap: anywhere;
+}
+
+.collective-agreement {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: 25px;
+    color: #52657b;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.collective-agreement input {
+    margin-top: 4px;
+    accent-color: #ed5797;
+}
+
+.collective-submit {
+    width: 100%;
+    margin-top: 25px;
+    padding: 17px;
+    border: none;
+    border-radius: 11px;
+    background: linear-gradient(135deg, #ed5797, #1976d2);
+    color: white;
+    font-size: 14px;
+    font-weight: 900;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.collective-submit:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 22px rgba(25, 118, 210, 0.2);
+}
+
+.collective-back {
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+    color: #1976d2;
+    font-size: 13px;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.collective-back:hover {
+    color: #ed5797;
+}
+
+@media (max-width: 850px) {
+    .collective-container {
+        grid-template-columns: 1fr;
+    }
+
+    .collective-page {
+        padding: 65px 5% 50px;
+    }
+}
+
+@media (max-width: 550px) {
+    .collective-info,
+    .collective-form-card {
+        padding: 24px;
+    }
+
+    .collective-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .template-status {
+        display: none;
+    }
+}
+
+/* UPLOAD AKTA KELAHIRAN */
+.upload-section {
+    margin-top: 22px;
+}
+
+.upload-section h3 {
+    font-size: 18px;
+    font-weight: 800;
+    color: #173b5e;
+    margin-bottom: 5px;
+}
+
+.upload-section p {
+    color: #718096;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.upload-document-box {
+    border: 2px dashed #f06292;
+    border-radius: 14px;
+    background: #fff8fb;
+    padding: 17px 15px;
+    text-align: center;
+    transition: 0.3s ease;
+}
+
+.upload-document-box:hover {
+    background: #fff0f6;
+    border-color: #d94687;
+}
+
+.upload-document-box .upload-icon {
+    width: 40px;
+    height: 40px;
+    margin: 0 auto 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #fde7f0;
+    font-size: 25px;
+}
+
+.upload-document-box h4 {
+    color: #173b5e;
+    font-size: 15px;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.upload-document-button {
+    display: inline-block;
+    background: linear-gradient(110deg, #f05298, #a568b8);
+    color: white;
+    padding: 9px 20px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+    margin: 10px 0;
+    transition: 0.3s;
+}
+
+.upload-document-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(240, 82, 152, 0.25);
+}
+
+.upload-file-name {
+    color: #1976d2;
+    font-size: 12px;
+    margin: 5px 0;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+}
+
+.upload-document-box small {
+    display: block;
+    color: #8a94a6;
+    font-size: 11px;
+}

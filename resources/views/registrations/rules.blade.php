@@ -29,12 +29,15 @@
                     <span>Saya menyatakan bahwa seluruh data yang diisi sudah benar dan menjadi tanggung jawab pribadi peserta.</span>
                 </label>
 
-                <a href="{{ route('registrations.create') }}" id="btnDaftar" class="primary-button pointer-events-none mt-4 w-full opacity-45">Lanjut ke Formulir Pendaftaran</a>
+                <a href="{{ route('registrations.choose') }}" class="rules-next-button"> LANJUT KE FORMULIR PENDAFTARAN </a>
             </aside>
 
             <section class="registration-card pdf-panel" aria-label="Dokumen ketentuan lomba">
                 <iframe src="{{ asset('juknis.pdf') }}" title="Ketentuan Lomba"></iframe>
             </section>
+            @push('styles')
+<link rel="stylesheet" href="{{ asset('assets/css/rules-button.css') }}">
+@endpush
         </div>
     </div>
 </main>

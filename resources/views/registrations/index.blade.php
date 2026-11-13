@@ -37,12 +37,14 @@
         <th>Tgl Lahir</th>
         <th>L/P</th>
         <th>Asal Swimschool</th>
+        <th>Data Pelatih / Perwakilan</th>
         <th>Nomor Lomba</th>
 
         @auth
             <th>Email Orang Tua</th>
             <th>No. WhatsApp Orang Tua</th>
-            <th>Foto Akte</th>
+            <th>Foto Akte Mandiri</th>
+            <th>PDF Akta Kolektif</th>
             <th>Bukti Pembayaran</th>
         @endauth
     </tr>

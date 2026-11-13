@@ -15,7 +15,14 @@
             <p class="registration-copy">Isi data peserta dengan teliti. Setelah berhasil, nama peserta akan langsung masuk ke daftar pendaftaran.</p>
         </div>
 
-        <form class="registration-card registration-form" action="{{ route('registrations.store') }}" method="POST" enctype="multipart/form-data">
+        <form
+    class="registration-card registration-form"
+    action="{{ $collectiveRegistration
+        ? route('registrations.collective.payment', $collectiveRegistration->id)
+        : route('registrations.store') }}"
+    method="POST"
+    enctype="multipart/form-data"
+>
             @csrf
 
            @if ($errors->any())
@@ -30,7 +37,16 @@
     </div>
 @endif
 
-            <section class="form-step is-active" data-form-step="1">
+@if ($collectiveRegistration)
+    <fieldset disabled style="border:0; padding:0; margin:0; min-width:0;">
+@endif
+
+
+            <section
+    class="form-step {{ request()->query('payment') == '1' ? '' : 'is-active' }}"
+    data-form-step="1"
+    aria-hidden="{{ request()->query('payment') == '1' ? 'true' : 'false' }}"
+>
             <p class="form-section-title">Data Peserta</p>
 
             <label class="form-field">Nama Anak Lengkap
@@ -184,10 +200,20 @@
             </label>
 
             <button class="primary-button w-full" type="button" id="nextPaymentStep">Pendaftaran Sekarang</button>
-            </section>
 
 
-<section class="form-step" data-form-step="2" aria-hidden="true">
+</section>
+
+{{-- PENUTUP FIELDSET KHUSUS KOLEKTIF --}}
+@if ($collectiveRegistration)
+    </fieldset>
+@endif
+
+<section
+    class="form-step {{ request()->query('payment') == '1' ? 'is-active' : '' }}"
+    data-form-step="2"
+    aria-hidden="{{ request()->query('payment') == '1' ? 'false' : 'true' }}"
+>
 
     <div class="ticket-page">
 
@@ -323,80 +349,269 @@
 
     </div>
 
-    <!-- ==================================
-         KODE LAMA - JANGAN DIHAPUS
-         ================================== -->
+@if ($collectiveRegistration)
 
-    <label class="form-field">Upload Bukti Pendaftaran
-        <input class="form-control file-control" type="file" name="bukti_pembayaran" accept="image/*" required>
-        <span class="text-sm font-semibold text-slate-500">Wajib, maksimal 2MB.</span>
-        @error('bukti_pembayaran') <small>{{ $message }}</small> @enderror
+    {{-- UPLOAD BUKTI PEMBAYARAN KOLEKTIF --}}
+    <label class="form-field">
+        Upload Bukti Pembayaran Kolektif
+
+        <input
+    class="form-control file-control"
+    type="file"
+    name="bukti_pembayaran"
+    accept="image/jpeg,image/png,image/webp"
+    required
+>
+
+        <span class="text-sm font-semibold text-slate-500">
+            Wajib. Format JPG, PNG, atau WEBP. Maksimal 2MB.
+        </span>
+
+        @error('bukti_pembayaran')
+            <small>{{ $message }}</small>
+        @enderror
+    </label>
+
+    {{-- PERSETUJUAN KUOTA --}}
+    <label class="agreement-box">
+        <input
+            type="checkbox"
+            name="konfirmasi_kuota"
+            value="1"
+            required
+        >
+
+        <span>
+            Saya memahami bahwa kuota peserta hanya dapat
+            diamankan setelah pembayaran dilakukan.
+        </span>
+    </label>
+
+    @error('konfirmasi_kuota')
+        <small>{{ $message }}</small>
+    @enderror
+
+    {{-- PERSETUJUAN BIAYA --}}
+    <label class="agreement-box">
+        <input
+            type="checkbox"
+            name="persetujuan_biaya"
+            value="1"
+            required
+        >
+
+        <span>
+            Dengan menyetujui formulir ini saya memahami dan
+            menyetujui bahwa biaya pendaftaran yang telah
+            dibayarkan tidak dapat dikembalikan apabila data
+            yang dikirim sudah masuk proses verifikasi.
+        </span>
+    </label>
+
+    @error('persetujuan_biaya')
+        <small>{{ $message }}</small>
+    @enderror
+
+    <div class="form-actions" style="display:block; width:100%;">
+    <button
+        class="primary-button w-full"
+        type="submit"
+        style="
+            display:block;
+            width:100%;
+            max-width:100%;
+            min-height:64px;
+            box-sizing:border-box;
+            border-radius:12px;
+            font-size:16px;
+            padding:18px 24px;
+        "
+    >
+        KIRIM BUKTI PEMBAYARAN →
+    </button>
+</div>
+
+@else
+
+    {{-- PEMBAYARAN MANDIRI TETAP SEPERTI SEMULA --}}
+
+    <label class="form-field">
+        Upload Bukti Pendaftaran
+
+        <input
+            class="form-control file-control"
+            type="file"
+            name="bukti_pembayaran"
+            accept="image/*"
+            required
+        >
+
+        <span class="text-sm font-semibold text-slate-500">
+            Wajib, maksimal 2MB.
+        </span>
+
+        @error('bukti_pembayaran')
+            <small>{{ $message }}</small>
+        @enderror
     </label>
 
     <label class="agreement-box">
-        <input type="checkbox" name="konfirmasi_kuota" value="1" @checked(old('konfirmasi_kuota')) required>
-        <span>Saya memahami bahwa kuota peserta hanya dapat diamankan setelah pembayaran dilakukan.</span>
+        <input
+            type="checkbox"
+            name="konfirmasi_kuota"
+            value="1"
+            @checked(old('konfirmasi_kuota'))
+            required
+        >
+
+        <span>
+            Saya memahami bahwa kuota peserta hanya dapat
+            diamankan setelah pembayaran dilakukan.
+        </span>
     </label>
-    @error('konfirmasi_kuota') <small>{{ $message }}</small> @enderror
 
     <label class="agreement-box">
-        <input type="checkbox" name="persetujuan_biaya" value="1" @checked(old('persetujuan_biaya')) required>
-        <span>Dengan menyetujui formulir ini saya memahami dan menyetujui bahwa biaya pendaftaran yang telah dibayarkan tidak dapat dikembalikan apabila data yang dikirim sudah masuk proses verifikasi.</span>
+        <input
+            type="checkbox"
+            name="persetujuan_biaya"
+            value="1"
+            @checked(old('persetujuan_biaya'))
+            required
+        >
+
+        <span>
+            Dengan menyetujui formulir ini saya memahami dan
+            menyetujui bahwa biaya pendaftaran yang telah
+            dibayarkan tidak dapat dikembalikan apabila data
+            yang dikirim sudah masuk proses verifikasi.
+        </span>
     </label>
-    @error('persetujuan_biaya') <small>{{ $message }}</small> @enderror
 
     <div class="form-actions">
-        <button class="secondary-button" type="button" id="backParticipantStep">Kembali</button>
-        <button class="primary-button" type="submit">Daftar Sekarang</button>
+        <button
+            class="secondary-button"
+            type="button"
+            id="backParticipantStep"
+        >
+            Kembali
+        </button>
+
+        <button class="primary-button" type="submit">
+            Daftar Sekarang
+        </button>
     </div>
+
+@endif
 
 </section>
 
 
-            <div class="border-t border-slate-200 pt-5 text-center text-sm text-slate-500">
-                <span class="font-semibold">Khusus Admin:</span>
-                <a class="font-extrabold text-cyan-800 hover:text-cyan-900" href="{{ route('admin.login') }}">Login Admin & Cek Data</a>
-            </div>
+            <div class="border-t border-slate-200 pt-5 text-center text-sm">
+    <a
+        href="{{ route('registrations.choose') }}"
+        class="font-extrabold text-cyan-800 hover:text-cyan-900"
+    >
+        ← Kembali Memilih Jenis Pendaftaran
+    </a>
+</div>
         </form>
     </div>
 </main>
 @endsection
 
+
 @push('scripts')
 <script>
+document.addEventListener('DOMContentLoaded', function () {
     const participantStep = document.querySelector('[data-form-step="1"]');
     const paymentStep = document.querySelector('[data-form-step="2"]');
+
     const nextPaymentStep = document.getElementById('nextPaymentStep');
     const backParticipantStep = document.getElementById('backParticipantStep');
+
     const registrationForm = document.querySelector('.registration-form');
 
+    // Deteksi halaman pembayaran kolektif
+    const isCollectivePayment = @json(
+        (bool) $collectiveRegistration &&
+        request()->query('payment') == '1'
+    );
+
+    // Deteksi jika ada error validasi pembayaran
+    const hasPaymentErrors = @json(
+        $errors->has('bukti_pembayaran') ||
+        $errors->has('konfirmasi_kuota') ||
+        $errors->has('persetujuan_biaya')
+    );
+
     function setStep(step) {
+        if (!participantStep || !paymentStep) {
+            return;
+        }
+
         const isPaymentStep = step === 2;
 
-        participantStep?.classList.toggle('is-active', !isPaymentStep);
-        paymentStep?.classList.toggle('is-active', isPaymentStep);
-        participantStep?.setAttribute('aria-hidden', isPaymentStep ? 'true' : 'false');
-        paymentStep?.setAttribute('aria-hidden', isPaymentStep ? 'false' : 'true');
+        // Atur class tampilan
+        participantStep.classList.toggle('is-active', !isPaymentStep);
+        paymentStep.classList.toggle('is-active', isPaymentStep);
 
-        registrationForm?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Atur tampilan secara langsung agar tidak bentrok dengan CSS
+        participantStep.style.setProperty(
+            'display',
+            isPaymentStep ? 'none' : 'block',
+            'important'
+        );
+
+        paymentStep.style.setProperty(
+            'display',
+            isPaymentStep ? 'block' : 'none',
+            'important'
+        );
+
+        // Atur aksesibilitas
+        participantStep.setAttribute(
+            'aria-hidden',
+            isPaymentStep ? 'true' : 'false'
+        );
+
+        paymentStep.setAttribute(
+            'aria-hidden',
+            isPaymentStep ? 'false' : 'true'
+        );
+
+        registrationForm?.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
     }
 
-    nextPaymentStep?.addEventListener('click', () => {
-        const firstStepFields = participantStep?.querySelectorAll('input, select, textarea') ?? [];
-        const invalidField = Array.from(firstStepFields).find((field) => !field.checkValidity());
+    // Tombol lanjut dari data peserta ke pembayaran
+    nextPaymentStep?.addEventListener('click', function () {
+        const fields = participantStep.querySelectorAll(
+            'input:not([type="checkbox"]), select, textarea'
+        );
 
-        if (invalidField) {
-            invalidField.reportValidity();
-            return;
+        for (const field of fields) {
+            if (!field.checkValidity()) {
+                field.reportValidity();
+                return;
+            }
         }
 
         setStep(2);
     });
 
-    backParticipantStep?.addEventListener('click', () => setStep(1));
+    // Tombol kembali ke data peserta
+    backParticipantStep?.addEventListener('click', function () {
+        setStep(1);
+    });
 
-    @if ($errors->has('bukti_pembayaran') || $errors->has('konfirmasi_kuota') || $errors->has('persetujuan_biaya'))
+    // Tentukan langkah awal sesuai jenis pendaftaran
+    if (isCollectivePayment || hasPaymentErrors) {
         setStep(2);
-    @endif
+    } else {
+        setStep(1);
+    }
+});
 </script>
 @endpush

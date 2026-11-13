@@ -1,0 +1,32 @@
+/* KHUSUS TOMBOL HALAMAN KETENTUAN LOMBA */
+
+a.rules-next-button {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    width: 100%;
+    min-height: 64px;
+    padding: 16px 22px;
+    margin-top: 18px;
+
+    background: linear-gradient(135deg, #F06292, #1976D2) !important;
+    color: #ffffff !important;
+
+    border: none;
+    border-radius: 12px;
+
+    font-size: 15px;
+    font-weight: 800;
+    text-align: center;
+    text-decoration: none !important;
+
+    box-shadow: 0 8px 20px rgba(25, 118, 210, 0.22);
+    transition: all 0.3s ease;
+}
+
+a.rules-next-button:hover {
+    background: linear-gradient(135deg, #ec407a, #1565c0) !important;
+    color: #ffffff !important;
+    transform: translateY(-3px);
+}

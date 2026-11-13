@@ -22,3 +22,24 @@
 Homestead.json
 Homestead.yaml
 Thumbs.db
+# File konfigurasi pribadi
+.env
+.env.*
+!.env.example
+
+# Database lokal
+/database.sqlite
+/database/*.sqlite
+/database/*.sqlite-*
+
+# File upload peserta
+/public/uploads/
+
+# File sementara Laravel
+/public/storage/
+
+/public/uploads/
+/public - Shortcut.lnk
+
+/public/desktop.ini
+/aquatic_db

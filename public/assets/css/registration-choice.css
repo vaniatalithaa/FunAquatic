@@ -1,0 +1,334 @@
+
+/* =====================================
+   HALAMAN PILIH JENIS PENDAFTARAN
+   FUN AQUATIC
+===================================== */
+
+.choice-page {
+    min-height: 100vh;
+    padding: 90px 24px 70px;
+    background: linear-gradient(
+        120deg,
+        #ed5c99 0%,
+        #b56ba9 50%,
+        #6475bd 100%
+    );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.choice-container {
+    width: 100%;
+    max-width: 1100px;
+    margin: auto;
+}
+
+/* HEADING */
+
+.choice-heading {
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 48px;
+}
+
+.choice-label {
+    display: inline-block;
+    color: #ffb4c9;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    margin-bottom: 12px;
+}
+
+.choice-heading h1 {
+    font-size: clamp(30px, 5vw, 52px);
+    font-weight: 900;
+    line-height: 1.15;
+    margin: 0 0 18px;
+    color: #ffffff;
+}
+
+.choice-heading p {
+    max-width: 700px;
+    margin: auto;
+    font-size: 17px;
+    line-height: 1.8;
+    color: #ffffff;
+}
+
+/* CARD CONTAINER */
+
+.choice-cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px;
+}
+
+/* CARD */
+
+.choice-card {
+    background: #ffffff;
+    border-radius: 22px;
+    padding: 38px 35px;
+    box-shadow: 0 15px 45px rgba(30, 20, 70, 0.16);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.choice-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 22px 50px rgba(30, 20, 70, 0.23);
+}
+
+/* ICON */
+
+.choice-icon {
+    width: 76px;
+    height: 76px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.individual-card .choice-icon {
+    background: #e7f0ff;
+    color: #1976d2;
+}
+
+.collective-card .choice-icon {
+    background: #fde8f1;
+    color: #e45d9b;
+}
+
+/* BADGE */
+
+.choice-badge {
+    display: inline-block;
+    width: fit-content;
+    padding: 8px 14px;
+    border-radius: 30px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+}
+
+.individual-card .choice-badge {
+    background: #e7f0ff;
+    color: #1976d2;
+}
+
+.collective-card .choice-badge {
+    background: #fde8f1;
+    color: #d94d8d;
+}
+
+/* TITLE & DESCRIPTION */
+
+.choice-card h2 {
+    color: #142b45;
+    font-size: 25px;
+    font-weight: 850;
+    margin: 0 0 12px;
+}
+
+.choice-card p {
+    color: #64748b;
+    font-size: 15px;
+    line-height: 1.8;
+    margin: 0 0 22px;
+}
+
+/* FEATURE LIST */
+
+.choice-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 28px;
+}
+
+.choice-card ul li {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+    color: #334155;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 13px;
+}
+
+.choice-card ul li i {
+    margin-top: 4px;
+    font-size: 13px;
+}
+
+.individual-card ul li i {
+    color: #1976d2;
+}
+
+.collective-card ul li i {
+    color: #e45d9b;
+}
+
+/* BUTTON */
+
+.choice-button {
+    margin-top: auto;
+    width: 100%;
+    min-height: 52px;
+    padding: 15px 20px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 850;
+    letter-spacing: 0.5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    transition: 0.25s ease;
+}
+
+.individual-button {
+    background: linear-gradient(110deg, #1976d2, #398ce4);
+}
+
+.individual-button:hover {
+    background: #125eaf;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+.collective-button {
+    background: linear-gradient(110deg, #ed5c99, #a66bb7);
+}
+
+.collective-button:hover {
+    background: #d94d8d;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+/* FOOTER */
+
+.choice-footer {
+    margin-top: 30px;
+    text-align: center;
+    color: #ffffff;
+    font-size: 14px;
+}
+
+.choice-footer i {
+    margin-right: 7px;
+}
+
+.back-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 9px;
+    margin: 24px auto 0;
+    width: fit-content;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    transition: 0.2s;
+}
+
+.back-link:hover {
+    color: #ffe0ec;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+    .choice-page {
+        padding: 65px 18px 45px;
+    }
+
+    .choice-heading {
+        margin-bottom: 30px;
+    }
+
+    .choice-heading p {
+        font-size: 14px;
+    }
+
+    .choice-cards {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .choice-card {
+        padding: 28px 24px;
+    }
+
+    .choice-card h2 {
+        font-size: 22px;
+    }
+}
+
+/* Tombol Pilih Kolektif */
+.collective-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 18px 24px;
+    margin-top: 35px;
+
+    background: linear-gradient(110deg, #f05298, #a568b8);
+    color: #ffffff !important;
+
+    border: none;
+    border-radius: 13px;
+
+    font-size: 15px;
+    font-weight: 800;
+    text-decoration: none !important;
+    text-align: center;
+
+    transition: all 0.3s ease;
+}
+
+.collective-button:hover {
+    background: linear-gradient(110deg, #df3f86, #8951a8);
+    color: #ffffff !important;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(225, 75, 145, 0.25);
+}
+
+.collective-button span {
+    font-size: 20px;
+}
+
+.choose-admin-access {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 24px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #ffffff;
+}
+
+.choose-admin-link {
+    color: #ffffff;
+    font-weight: 800;
+    text-decoration: none;
+    transition: 0.2s ease;
+}
+
+.choose-admin-link:hover {
+    color: #ffd4e8;
+    text-decoration: underline;
+}
